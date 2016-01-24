@@ -1,0 +1,45 @@
+header {
+    font-family: 'Montserrat';
+}
+
+header h1 {
+    font-size: 4em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+
+header h2 {
+    font-size: 1.1em;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.navigation a {
+    margin-right: 10px;
+}
+
+.bottomspaced{
+    margin-bottom: 30px;
+}
+
+.more-bottomspaced{
+    margin-bottom: 60px;
+}
+
+.gray{
+    color: #888;
+}
+
+.description-intro{
+    font-family: 'PT Serif', serif;
+    font-size: 16pt;
+    text-align: left;
+}
+
+.featured-heading{
+    font-family: 'Montserrat';
+    /*text-transform: uppercase;*/
+    font-size: 18px;
+    font-weight: 800;
+}
