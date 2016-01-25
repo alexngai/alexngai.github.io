@@ -27,6 +27,10 @@ header h2 {
     margin-bottom: 60px;
 }
 
+.less-topspaced{
+    margin-top: 15px;
+}
+
 .gray{
     color: #888;
 }
@@ -42,4 +46,17 @@ header h2 {
     /*text-transform: uppercase;*/
     font-size: 18px;
     font-weight: 800;
+}
+
+.contact-label{
+    min-width:150px;
+    margin-right: 10px;
+}
+
+.contact-text{
+    float:right;
+}
+
+.contact-info div {
+    border-bottom: 1px solid #CCC;
 }
