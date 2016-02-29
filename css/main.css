@@ -27,6 +27,10 @@ header h2 {
     margin-bottom: 60px;
 }
 
+.less-bottomspaced{
+    margin-bottom: 15px;
+}
+
 .less-topspaced{
     margin-top: 15px;
 }
@@ -59,4 +63,45 @@ header h2 {
 
 .contact-info div {
     /*border-bottom: 1px solid #CCC;*/
+}
+
+.section-heading{
+   font-family: 'Montserrat';
+    /*text-transform: uppercase;*/
+    font-size: 26px;
+    font-weight: 800;
+    border-bottom: 1px solid #DDD;
+    letter-spacing: 3px;
+}
+
+.project-heading{
+}
+
+.project-heading h3 {
+    font-size: 18px;
+    margin: 0px;
+    display: inline-block;
+    font-weight: 800;
+}
+
+
+.hover-link{
+    color: #555;
+    transition: color .28s ease;
+    text-decoration: underline;
+}
+
+.hover-link:hover{
+    color: #039be5;
+}
+
+.project-img{
+    border: 1px solid #ddd;
+}
+
+.github-links article{
+    margin-bottom: 15px;
+    font-weight: 800;
+    min-height: 50px;
+    font-size: 16px;
 }

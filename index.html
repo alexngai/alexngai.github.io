@@ -8,7 +8,7 @@
 	<link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'> -->
-	<!-- <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
     <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/> 
 
@@ -43,208 +43,229 @@
 
 	   	<div id="home">
 	   		
-			<div class="row more-bottomspaced">
-				<div class="col s5">
+			<article class="row bottomspaced">
+				<div class="col l5 m5 s12 bottomspaced">
 					<div class="description-intro">
 						Hello, I’m Alex, an Engineer based in the US – I create digital products with knowledge and passion.
 					</div>
 				</div>
 
-				<div class="col s7">
+				<div class="col s12 m7 l7 bottomspaced">
 					<div class="description-body gray">
 						With 3+ years of experience I express my proficiency on all levels of the tech stack in creating meaningful products. 
 						I focus on building unique data-driven web applications with an emphasis on artificial intelligence. 
 					</div>
 				</div> 
-			</div>
+			</article>
+
+			<h2 class="section-heading">Personal Projects</h2>
+
+	    	<div class="row bottomspaced">
+	    		<div class="col s12 m12 l12">
+	    			<div class="featured-heading less-bottomspaced">
+	    				Web Projects
+	    			</div>
+	    			
+	    			<div class="row">
+	    				<div class="col l2 m2 s4">
+	    					<img class="responsive-img project-img materialboxed" src="/img/COSMETIQ.PNG">
+		    			</div>
+	    				<div class="col l10 m10 s8">
+	    					<div class="project-heading"><h3>01. COSMETIQ.TV</h3></div>
+	    					<p class="project-description">
+	    						An experiment in creating an enterprise-scale site in an unfamiliar space, 
+	    						Cosmetiq is a platform for videos and live streams from cosmetics vloggers.
+	    						It scrapes the web extract supplementary cosmetic product information.
+	    						<!-- Streaming, REST API, and comet-based chat capabilities built from the ground up. -->
+	    					</p>
+	    					<p class="links">
+								<a class="hover-link" href="http://cosmetiq.tv">link</a>
+	    						<!-- <a class="hover-link" href="#">project page</a> -->
+	    					</p>
+	    				</div>
+	    			</div>
+	    			
+	    			<div class="row">
+	    				<div class="col l2 m2 s4">
+	    					<img class="responsive-img project-img materialboxed" src="/img/redditmatch.PNG">
+		    			</div>
+	    				<div class="col l10 m10 s8">
+	    					<div class="project-heading"><h3>02. Reddit Match</h3></div>
+	    					<p class="project-description">
+	    						A way for reddit users to find a reddit user most similar to themselves. 
+	    						A large scale user/product recommender using public data from the Reddit API.
+	    						Matches users by upvotes and subreddit subcriptions.
+	    					</p>
+	    					<p class="links">
+								<a class="hover-link" href="http://redditmatch.herokuapp.com">link</a>
+	    						<!-- <a class="hover-link" href="#">project page</a> -->
+	    					</p>
+	    				</div>
+	    			</div>
 
 
-	    	<!-- <div class="row more-bottomspaced">
-	    		<div class="col s4">
-	    			<div class="featured-heading bottomspaced">Active Projects</div>
-	    			<div>01. Lorem ipsum dolor sit amet</div>
-	    			<div>02. Lorem ipsum dolor sit amet</div>
-	    			<div>03. Lorem ipsum dolor sit amet</div>
-
-	    			<div class="less-topspaced"><a href="#">&lt;See all&gt;</a></div>
+	    			<!-- <div class="less-topspaced"><a href="#">&lt; See all &gt;</a></div> -->
 	    		</div>
+	    	</div> 
 
-	    		<div class="col s8">
+	    	
 
-					<div class="row">
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
-							<div>01. Lorem ipsum dolor sit amet, consectetur adipiscing eli</div>
-						</div>
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
-							<div>02. Lorem ipsum dolor sit amet, consectetur adipiscing eli</div>
-						</div>
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
-							<div>03. Lorem ipsum dolor sit amet, consectetur adipiscing eli</div>
-						</div>
+	    	<div class="row bottomspaced">
+	    		<div class="col s12 m12 l12">
+	    			<div class="less-bottomspaced">
+	    				<span class="featured-heading">Mobile Apps</span>
+	    			</div>
+	    			
+	    			<div class="row">
+	    				<div class="col l2 m2 s4">
+	    					<img class="responsive-img project-img materialboxed" src="/img/moxie.PNG">
+		    			</div>
+	    				<div class="col l10 m10 s8">
+	    					<div class="project-heading"><h3>01. Moxie Health Mobile</h3></div>
+	    					<p class="project-description">
+	    						A mobile Android app to supplement the Moxie Health smart scale. 
+	    						Data from the scale syncs with the web via a smartphone's Bluetooth connection.
+	    						Health data is visualized and tracked on the mobile app, and a built-in pedometer on the app tracks exercise.
 
-						<div class="col s4">
-							<div class="card">
-							    <div class="card-image waves-effect waves-block waves-light">
-							      <img class="activator" src="http://placehold.it/220x280">
-							    </div>
-							    <div class="card-content">
-							      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-							      <p><a href="#">This is a link</a></p>
-							    </div>
-							    <div class="card-reveal">
-							      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-							      <p>Here is some more information about this product that is only revealed once clicked on.</p>
-							    </div>
-							  </div>
-						</div>
-					</div>
-				</div>
-	    	</div> -->
+	    						Biometrics measured include pressure, glucose, body fat, and heart rate.
+	    					</p>
+	    					<p class="links">
+								<a class="hover-link" href="https://github.com/AlexNgai/Moxie-App-Demo">link</a>
+	    						<!-- <a class="hover-link" href="#">project page</a> -->
+	    					</p>
+	    				</div>
+	    			</div>
 
-	    	<!-- <div class="row more-bottomspaced">
-	    		<div class="col s4">
+	    			<div class="row">
+	    				<div class="col l2 m2 s4">
+	    					<img class="responsive-img project-img materialboxed" src="/img/jellyjump.PNG">
+		    			</div>
+	    				<div class="col l10 m10 s8">
+	    					<div class="project-heading"><h3>02. Jelly Quest</h3></div>
+	    					<p class="project-description">
+	    						A mobile Android game built using LibGDX. 
+	    						Jelly Quest is an experiment in using the Box2DLights library for suspensive lighting-based gameplay.
+	    						Players try to reach the ocean surface while dodging dangerous predators while gathering precious bubbles and powerups.
+
+	    					</p>
+	    					<p class="links">
+								<a class="hover-link" href="https://play.google.com/store/apps/details?id=com.alexngai.jellyquest.android">link</a>
+	    						<!-- <a class="hover-link" href="#">project page</a> -->
+	    					</p>
+	    				</div>
+	    			</div>
+
+	    			<div class="row">
+	    				<div class="col l2 m2 s4">
+	    					<img class="responsive-img project-img materialboxed" src="/img/moovr.PNG">
+		    			</div>
+	    				<div class="col l10 m10 s8">
+	    					<div class="project-heading"><h3>03. Moovr</h3></div>
+	    					<p class="project-description">
+	    						An Android app for viewing videos on Reddit using the Youtube API - swipe left and right to browse.
+								Moovr helps you quickly browse the viral videos of Reddit. 
+								Including ad-free Youtube streaming, integrated comment browsing, and multiple subreddit selection options.
+	    					</p>
+	    					<p class="links">
+								<a class="hover-link" href="https://play.google.com/store/apps/details?id=com.alexngai.moovr">link</a>
+	    						<!-- <a class="hover-link" href="#">project page</a> -->
+	    					</p>
+	    				</div>
+	    			</div>
+
+	    			<div class="less-topspaced"><a href="#">&lt; See all &gt;</a></div>
+	    		</div>
+	    	</div> 
+
+	    	<div class="row bottomspaced">
+	    		<div class="col s12 m12 l12">
+	    			<div class="featured-heading less-bottomspaced">
+	    				Machine Learning
+	    			</div>
+
+	    			<div class="row">
+	    				<div class="col l2 m2 s4">
+	    					<img class="responsive-img project-img materialboxed" src="/img/mousebmi.PNG">
+		    			</div>
+	    				<div class="col l10 m10 s8">
+	    					<div class="project-heading"><h3>01. Mouse BMI Project</h3></div>
+	    					<p class="project-description">
+	    						MEng research project to create a viable long-term brain machine interface (BMI) using noninvasive optical sensing.
+	    						Transgenic mice neurons are modified to produce visible fluorescent signals. 
+	    						Awake running mice are then recorded to predict neural intentions of limb position and movement using statistical classifiers.
+	    					</p>
+	    					<p class="links">
+								<a class="hover-link" href="https://www.dropbox.com/s/0sv91yei8txpquh/MEngFinalProjectReport.pdf?dl=0">link</a>
+	    						<!-- <a class="hover-link" href="#">project page</a> -->
+	    					</p>
+	    				</div>
+	    			</div>
+
+	    			<div class="row">
+	    				<div class="col l2 m2 s4">
+	    					<img class="responsive-img project-img materialboxed" src="/img/sickly.PNG">
+		    			</div>
+	    				<div class="col l10 m10 s8">
+	    					<div class="project-heading"><h3>02. sick.ly</h3></div>
+	    					<p class="project-description">
+	    						A submission to the 2014 Koding Global Hackathon. 
+	    						Uses data from the Twitter streaming API to track the propagation of sickness throughout the world by 
+	    						classifying different types of sickness in tweets.
+	    					</p>
+	    				</div>
+	    			</div>
+
+	    		</div>
+	    	</div> 
+
+	    	<h2 class="section-heading">Professional</h2>
+
+	    	<div class="row bottomspaced">
+	    		<div class="col s12 m12 l12">
 	    			<div class="featured-heading">
-	    				Professional
+	    				BrickLink
 	    			</div>
+	    			
+	    			<ul>
+	    				<li>• Built new universal search engine / active autocomplete</li>
+	    				<li>• Built automatic cart builder using genetic algorithms</li>
+	    				<li>• Built international automatic shipping cost calculator</li>
+	    			</ul>
 	    		</div>
+	    	</div> 
 
-	    		<div class="col s8">
-					<div class="description-body gray">
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-					</div>
-					<div class="row">
-						<div class="col s4">
-							"Lorem ipsum dolor sit amet, consectetur a
-						</div>
-						<div class="col s4">
-							"Lorem ipsum dolor sit amet, consectetur a
-						</div>
-						<div class="col s4">
-							"Lorem ipsum dolor sit amet, consectetur a
-						</div>
-					</div>
-				</div>
-	    	</div> -->
+	    	<h2 class="section-heading">Github Repositories</h2>
 
-	    	<!-- <div class="row more-bottomspaced">
-	    		<div class="col s4">
-	    			<div class="featured-heading bottomspaced">
-	    				Mobile Apps
-	    			</div>
-	    			<div>01. Lorem ipsum dolor sit amet</div>
-	    			<div>02. Lorem ipsum dolor sit amet</div>
-	    			<div>03. Lorem ipsum dolor sit amet</div>
-
-	    			<div class="less-topspaced"><a href="#">&lt;See all&gt;</a></div>
-	    		</div>
-
-	    		<div class="col s8">
-					<div class="row">
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
+	    	<div class="row bottomspaced">
+	    		<div class="col s12 bottomspaced">
+					<div class="github-links row">
+						<div class="col l3 m4 s6">
+							<article><a href="https://github.com/AlexNgai/Moovr">Moovr</a></article>
 						</div>
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
+						<div class="col l3 m4 s6">
+							<article><a href="https://github.com/AlexNgai/Moxie-App-Demo">Moxie App Demo</a></article>
 						</div>
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
+						<div class="col l3 m4 s6">
+							<article><a href="https://github.com/AlexNgai/Herring">Herring - a better Fishy for Android</a></article>
+						</div>
+						<div class="col l3 m4 s6">
+							<article><a href="https://github.com/AlexNgai/Jelly-Jump-Android">Jelly Quest - Android</a></article>
+						</div>
+						<div class="col l3 m4 s6">
+							<article><a href="https://github.com/AlexNgai/TopTweets-Twitter-Livestream-for-Android">Twitter Livestream for Android</a></article>
+						</div>
+						<div class="col l3 m4 s6">
+							<article><a href="https://github.com/AlexNgai/Light-Test-box2dlights">TagPro - Shadow Concept</a></article>
+						</div>
+						<div class="col l3 m4 s6">
+							<article><a href="https://github.com/AlexNgai/Simple-Pedometer">Simple Pedometer</a></article>
+						</div>
+						<div class="col l3 m4 s6">
+							<article><a href="https://github.com/AlexNgai/Template-Java-Server">Java Spark Template Server</a></article>
 						</div>
 					</div>
 				</div>
 	    	</div>
-
-	    	<div class="row more-bottomspaced">
-	    		<div class="col s4">
-	    			<div class="featured-heading bottomspaced">
-	    				Academic Projects
-	    			</div>
-	    			<div>01. Lorem ipsum dolor sit amet</div>
-	    			<div>02. Lorem ipsum dolor sit amet</div>
-	    			<div>03. Lorem ipsum dolor sit amet</div>
-
-	    			<div class="less-topspaced"><a href="#">&lt;See all&gt;</a></div>
-	    		</div>
-
-	    		<div class="col s8">
-					<div class="row">
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
-						</div>
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
-						</div>
-						<div class="col s4">
-							<img class="responsive-img" src="http://placehold.it/220x280">
-						</div>
-					</div>
-				</div>
-	    	</div>
-
-	    	<hr class="bottomspaced">
-
-	    	<div class="row more-bottomspaced">
-	    		<div class="col s3">
-	    			<div class="featured-heading">
-	    				Github Repositories
-	    			</div>
-	    		</div>
-
-	    		<div class="col s9">
-					<div class="row">
-						<div class="col s4">
-							<a href="#">"Lorem ipsum dolor sit amet, consectetur a</a>
-						</div>
-						<div class="col s4">
-							<a href="#">"Lorem ipsum dolor sit amet, consectetur a</a>
-						</div>
-						<div class="col s4">
-							<a href="#">"Lorem ipsum dolor sit amet, consectetur a</a>
-						</div>
-						<div class="col s4">
-							<a href="#">"Lorem ipsum dolor sit amet, consectetur a</a>
-						</div>
-						<div class="col s4">
-							<a href="#">"Lorem ipsum dolor sit amet, consectetur a</a>
-						</div>
-						<div class="col s4">
-							<a href="#">"Lorem ipsum dolor sit amet, consectetur a</a>
-						</div>
-						<div class="col s4">
-							<a href="#">"Lorem ipsum dolor sit amet, consectetur a</a>
-						</div>
-					</div>
-				</div>
-	    	</div> -->
-
-	    	<!-- <hr class="bottomspaced"> -->
-
-	    	<!-- <div class="row more-bottomspaced">
-	    		<div class="col s3">
-	    			<div class="featured-heading">
-	    				Illustrations
-	    			</div>
-	    		</div>
-
-	    		<div class="col s9">
-					<div class="row">
-						<div class="col s3">
-							<img class="responsive-img materialboxed" src="img/is_bliss.png">
-						</div>
-						<div class="col s3">
-							<img class="responsive-img materialboxed" src="img/party_animals.png">
-						</div>
-						<div class="col s3">
-							<img class="responsive-img materialboxed" src="img/tea_party.png">
-						</div>
-						<div class="col s3">
-							<img class="responsive-img materialboxed" src="img/chasing.png">
-						</div>
-					</div>
-				</div>
-	    	</div> -->
 
 	    </div>
 
@@ -257,6 +278,9 @@
 						<div><span class="contact-label">github:</span><a  class="contact-text" href="https://github.com/AlexNgai">AlexNgai</a></div>
 						<div><span class="contact-label">linkedin:</span><a class="contact-text" href="https://www.linkedin.com/in/alex-ngai-1ab50741">Alex Ngai</a></div>
 					</div>
+					<br/>
+					<hr/>
+					<div><a href="https://www.dropbox.com/s/e7adtn88mwzxe8a/resume_2016.1.pdf?dl=0">resume</a></div>
 				</div>
 			</div>
 
