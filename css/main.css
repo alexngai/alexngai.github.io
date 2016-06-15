@@ -105,3 +105,25 @@ header h2 {
     min-height: 50px;
     font-size: 16px;
 }
+
+.resume h1 {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.resume {
+    font-size: 16px;
+}
+
+.resume strong {
+    font-size: 20px;
+}
+
+.resume ul {
+    list-style: default;
+}
+
+.resume ul li {
+    list-style-type: circle;
+    margin-left: 20px;
+}
