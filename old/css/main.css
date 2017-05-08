@@ -1,0 +1,129 @@
+header {
+    font-family: 'Montserrat';
+}
+
+header h1 {
+    font-size: 4em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+
+header h2 {
+    font-size: 1.1em;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.navigation a {
+    margin-right: 10px;
+}
+
+.bottomspaced{
+    margin-bottom: 30px;
+}
+
+.more-bottomspaced{
+    margin-bottom: 60px;
+}
+
+.less-bottomspaced{
+    margin-bottom: 15px;
+}
+
+.less-topspaced{
+    margin-top: 15px;
+}
+
+.gray{
+    color: #888;
+}
+
+.description-intro{
+    font-family: 'PT Serif', serif;
+    font-size: 16pt;
+    text-align: left;
+}
+
+.featured-heading{
+    font-family: 'Montserrat';
+    /*text-transform: uppercase;*/
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.contact-label{
+    min-width:150px;
+    margin-right: 10px;
+}
+
+.contact-text{
+    float:right;
+}
+
+.contact-info div {
+    /*border-bottom: 1px solid #CCC;*/
+}
+
+.section-heading{
+   font-family: 'Montserrat';
+    /*text-transform: uppercase;*/
+    font-size: 26px;
+    font-weight: 800;
+    border-bottom: 1px solid #DDD;
+    letter-spacing: 3px;
+}
+
+.project-heading{
+}
+
+.project-heading h3 {
+    font-size: 18px;
+    margin: 0px;
+    display: inline-block;
+    font-weight: 800;
+}
+
+
+.hover-link{
+    color: #555;
+    transition: color .28s ease;
+    text-decoration: underline;
+}
+
+.hover-link:hover{
+    color: #039be5;
+}
+
+.project-img{
+    border: 1px solid #ddd;
+}
+
+.github-links article{
+    margin-bottom: 15px;
+    font-weight: 800;
+    min-height: 50px;
+    font-size: 16px;
+}
+
+.resume h1 {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.resume {
+    font-size: 16px;
+}
+
+.resume strong {
+    font-size: 20px;
+}
+
+.resume ul {
+    list-style: default;
+}
+
+.resume ul li {
+    list-style-type: circle;
+    margin-left: 20px;
+}
