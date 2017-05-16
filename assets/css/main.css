@@ -1,22 +1,36 @@
+body {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+}
+
 header {
     font-family: 'Montserrat';
 }
 
 header h1 {
-    font-size: 4em;
-    font-weight: 700;
+    font-size: 3em;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 10px;
+    letter-spacing: 3px;
 }
 
 header h2 {
-    font-size: 1.1em;
-    font-weight: 800;
-    letter-spacing: 2.5px;
+    font-size: 1.7em;
+    /*font-weight: 800;*/
+    /*letter-spacing: 2.5px;*/
+}
+
+.title {
+    font-size: 1.7em;
+    text-align: right;
 }
 
 .navigation a {
     margin-right: 10px;
+}
+
+.unpadded {
+    padding: 0px !important;
 }
 
 .bottomspaced{
@@ -126,4 +140,22 @@ header h2 {
 .resume ul li {
     list-style-type: circle;
     margin-left: 20px;
+}
+
+.img-caption {
+    line-height: 1;
+    display: block;
+}
+
+.sidebar {
+    margin-left: 20px;
+}
+
+.sidebar-title {
+    font-size: 1.3em;
+    line-height: 2;
+}
+
+.sidebar-text {
+    font-size: .9em;
 }
