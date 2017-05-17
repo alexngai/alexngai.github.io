@@ -1,0 +1,100 @@
+---
+---
+
+body {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+}
+
+header {
+    font-family: 'Montserrat';
+    h1 {
+        font-size: 3em;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+    h2 {
+        font-size: 1.7em;
+    }
+    a {
+        color: black;
+    }
+}
+
+.content a, .sidebar a {
+    color: black;
+    border-bottom: 1px solid red;
+    &:hover {
+        color: red;
+    }
+}
+
+.link-solid {
+    border-bottom: none;
+    &:hover {
+        color: black;
+        border-bottom: 1px solid red;
+    }
+}
+
+.title {
+    font-size: 1.7em;
+    text-align: right;
+    a {
+        @extend .link-solid;
+    }
+}
+
+.navigation a {
+    margin-right: 10px;
+}
+
+.unpadded {
+    padding: 0px !important;
+}
+
+.bottomspaced{
+    margin-bottom: 30px;
+}
+
+.more-bottomspaced{
+    margin-bottom: 60px;
+}
+
+.less-bottomspaced{
+    margin-bottom: 15px;
+}
+
+.less-topspaced{
+    margin-top: 15px;
+}
+
+.gray{
+    color: #888;
+}
+
+.img-caption {
+    line-height: 1;
+    display: block;
+}
+
+.sidebar {
+    margin-left: 20px;
+    .sidebar-title {
+        font-size: 1.3em;
+        line-height: 2;
+        a {
+            @extend .link-solid;
+        }
+    }
+    .sidebar-text {
+        font-size: .9em;
+    }
+    .recent-post {
+        font-size: 1.1em;
+        a {
+            @extend .link-solid;
+        }
+    }
+}

@@ -31,3 +31,11 @@ exclude:
   - Gemfile
   - Gemfile.lock
 repository: "alexngai/alexngai.github.io"
+
+collections:
+  posts:
+    output: true
+    permalink: /blog/:path
+  projects:
+    output: true
+    permalink: /projects/:path

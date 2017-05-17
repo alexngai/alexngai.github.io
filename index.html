@@ -2,35 +2,56 @@
 layout: default
 ---
 
-<div class="content">
-  <div class="posts">
-    {% for post in site.posts limit:50 %}{% if post.archived %}{% else %}<a
-    href="{% if post.external_url %}{{ post.external_url }}{% else %}{{ post.url }}{% endif %}"
-    class="post-excerpt{% if post.photo_url %} photo{% endif %}">
-      <div class="c">
-      {% if post.photo_url %}
-        <h3>{{ post.title }}</h3>
-        <div class="image" style="background-image:url('{{ post.photo_url }}')"></div>
-      {% else %}
-        <h3 class="text">{{ post.title }}</h3>
-        <div class="body">
-          <p>{% if post.description %}
-          {{ post.description | markdownify | strip_html }}
-          {% else %}
-          {{ post.excerpt | strip_html }}
-          {% endif %}
-          <info datetime="{{ page.date | date: "%Y-%m-%d" }}">
-            {{ post.date | date: "%b %Y" }}
-          </info>
-          </p>
+<div class="posts">
+  
+  {% for post in site.posts limit:10 %}
+    {% if post.archived %}
+    {% else %}
+      <div class="post">
+        <div class="title">
+          <a href="{{post.url}}">
+          {{post.title}}
+          </a>
         </div>
-      {% endif %}<!-- post.photo_url -->
-
+        <div class="post-body row">
+          <div class="post-meta col l3 hide-on-med-and-down">
+            Post meta information meta information
+          </div>
+          <div class="post-content col l9 xl12">
+            {{post.content}}
+          </div>
+        </div>
       </div>
-    </a>{% endif %}<!-- post.archived -->{% endfor %}
-    <div class="breaker"></div>
-    <div class="end">
-      <a href="/archive/">Archived articles...</a>
-    </div>
+
+      <!-- <a href="{% if post.external_url %}{{ post.external_url }}{% else %}{{ post.url }}{% endif %}"
+        class="post-excerpt{% if post.photo_url %} photo{% endif %}">
+        <div class="c">
+          {% if post.photo_url %}
+          <h3>{{ post.title }}</h3>
+          {% include image.html url="https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/cat-adult-landing-hero.ashx" description="My cat, Robert Downey Jr." %}
+          {% else %}
+          <h3 class="text">{{ post.title }}</h3>
+          <div class="body">
+            <p>
+              {% if post.description %}
+              {{ post.description | markdownify | strip_html }}
+              {% else %}
+              {{ post.excerpt | strip_html }}
+              {% endif %}
+              <info datetime="{{ page.date | date: "%Y-%m-%d" }}">
+                {{ post.date | date: "%b %Y" }}
+              </info>
+            </p>
+          </div>
+          {% endif %}
+
+        </div>
+      </a> -->
+    {% endif %}<!-- post.archived -->
+  {% endfor %}
+
+  <div class="breaker"></div>
+  <div class="end">
+    <a href="/archive/">Archived articles...</a>
   </div>
 </div>
