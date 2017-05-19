@@ -66,6 +66,10 @@ header {
     margin-bottom: 15px;
 }
 
+.topspaced {
+    margin-top: 30px;
+}
+
 .less-topspaced{
     margin-top: 15px;
 }
@@ -96,5 +100,21 @@ header {
         a {
             @extend .link-solid;
         }
+    }
+    .preview-img {
+        max-width: 75%;
+    }
+}
+
+.post-meta {
+    font-family: 'Courier';
+    font-size: .8em; 
+    .post-categories a {
+        border-bottom: none;
+        font-weight: bold;
+    }
+    .post-project a {
+        border-bottom: none;
+        font-weight: bold;
     }
 }

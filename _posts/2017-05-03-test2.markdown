@@ -1,8 +1,11 @@
 ---
 layout: post
 title:  "Testpost!2"
-date:   2017-05-02 23:07:46 -0700
-categories: jekyll update
+date:   May 3, 2017
+project: "Cosmetiq.tv"
+category: robotics
+tags: 	test post info various tags
+short:	"The first post of the month of May was a short one."
 ---
 Test post2
 

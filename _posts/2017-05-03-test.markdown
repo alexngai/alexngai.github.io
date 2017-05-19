@@ -2,8 +2,8 @@
 layout: default
 title:  "Testpost!"
 date:   2017-05-02 23:07:46 -0700
-categories: jekyll update
-tags: [test]
+category: [jekyll, update post, diving]
+tags: test tags posts
 ---
 Test post
 

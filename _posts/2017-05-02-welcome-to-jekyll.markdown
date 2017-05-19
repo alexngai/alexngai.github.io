@@ -2,8 +2,8 @@
 layout: post
 title:  "A Voice Moving Over The Waters"
 date:   2017-05-02 23:07:46 -0700
-categories: jekyll update
-tags: [web, jekyll]
+category: jekyll update water
+tags: [web, jekyll, other, tag, two words]
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 

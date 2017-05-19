@@ -1,8 +1,10 @@
 <div>
-	<img class="responsive-img" src="{{ include.url }}" alt="{{ include.description }}"/>
+	<img class="responsive-img" src="{{ include.url }}" {% if include.description %}alt="{{ include.description }}"{% endif %}/>
 
+	{% if include.description %}
 	<small class="img-caption">
 		[Image: {{ include.description }}]
 	</small>
+	{% endif %}
 
 </div>

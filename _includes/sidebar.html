@@ -4,7 +4,7 @@
 	  	<a href="/about">About / Contact</a>
 	  </div>
 	  <div class="sidebar-text">
-	  	Hi, I’m Alex, an engineer based in the US. 
+	  	Hi, I’m Alex, an engineer based in the US. I write about my projects, interests, and art. 
 	  	<a href="/about/"{% if page.url contains "/about/" %}class="active"{% endif %}>More</a>.
 	  </div>
   </section>
@@ -19,6 +19,14 @@
 	  <div class="sidebar-title">
 	  	<a href="/about">Interests</a>
 	  </div>
+  </section>
+
+  <section>
+  	<div class="preview-img topspaced bottomspaced">
+  		<a href="/category/diving">
+  			{% include image.html url="/assets/img/wave_top2.jpg" %}
+  		</a>
+  	</div>
   </section>
 
   <section>
