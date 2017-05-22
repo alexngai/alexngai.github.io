@@ -1,8 +1,37 @@
 ---
 layout: page
 ---
-<h2>Posts related to: {{ page.title }}</h2>
+<h2 class="page-title">Posts related to: <b>{{ page.title }}</b></h2>
 
-{% unless page.content == '' %}
-  <p>{{ page.content }}</p>
+{% assign curcat = page.category | slugify %}
+
+{% unless site.categories.[curcat] | size > 0 %}
+  <p>No posts in this category at this time.</p>
 {% endunless %}
+
+<div class="post-previews">
+{% for post in site.categories.[curcat] %}
+  <div class="post-preview">
+      <a href="{{ post.url | prepend: site.baseurl }}">
+          <h2 class="post-preview-title">            
+              {{ post.title }}
+          </h2>
+          {% if post.short %}
+          <h3 class="post-preview-short gray">
+              {{ post.short }}
+          </h3>
+          {% endif %}
+      </a>
+      <div class="post-preview-meta">
+        Posted by 
+        {% if post.author %}
+          {{ post.author }}
+        {% else %}
+          {{ site.title }}
+        {% endif %} 
+        on {{ post.date | date: "%B %-d, %Y" }}
+      </div>
+  </div>
+  <hr>
+{% endfor %}
+</div>

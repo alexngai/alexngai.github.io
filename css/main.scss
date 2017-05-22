@@ -74,6 +74,10 @@ header {
     margin-top: 15px;
 }
 
+.full-width {
+    width: 100%;
+}
+
 .gray{
     color: #888;
 }
@@ -117,4 +121,35 @@ header {
         border-bottom: none;
         font-weight: bold;
     }
+}
+
+.end {
+    font-size: 1.2em;
+}
+
+.post {
+    img {
+        width: 100%;
+    }
+}
+
+.overflow-ellipses {
+    text-overflow: ellipsis;
+}
+
+.post-preview {
+    .post-preview-title {
+        font-size: 1.2em;
+    }
+    .post-preview-short {
+        font-size: 1em;
+    }
+    .post-preview-meta {
+        font-family: 'Courier';
+        font-size: .8em;
+    }
+}
+
+.page-title {
+    font-size: 1.5em;
 }

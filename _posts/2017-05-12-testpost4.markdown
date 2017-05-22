@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Testpost!4"
+date:   May 12, 2017
+project: "Cosmetiq.tv"
+category: robotics
+tags: 	test post info various tags
+---
+Test post4
+

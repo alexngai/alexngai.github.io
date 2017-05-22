@@ -1,5 +1,8 @@
 <div>
-	<img class="responsive-img" src="{{ include.url }}" {% if include.description %}alt="{{ include.description }}"{% endif %}/>
+	<img class="responsive-img {% if include.materialboxed %}materialboxed{% endif %}" src="{{ include.url }}" 
+	{% if include.description %}alt="{{ include.description }}"{% endif %}
+	{% if include.description %}data-caption="{{ include.description }}"{% endif %}
+	/>
 
 	{% if include.description %}
 	<small class="img-caption">

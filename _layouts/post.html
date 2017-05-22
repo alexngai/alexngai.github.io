@@ -1,0 +1,45 @@
+---
+layout: page
+---
+<div class="post">
+  <div class="title">
+    <a href="{{page.url}}">
+    {{page.title}}
+    </a>
+  </div>
+  <div class="post-body row">
+    <div class="post-meta col l3 hide-on-med-and-down">
+      <div class="less-bottomspaced">
+        {{page.date | date: "%b %-d, %Y" }}
+      </div>
+      {% if page.project %}
+        <div class="less-bottomspaced post-project">
+          <a href="/projects/{{page.project}}">{{page.project}}</a>
+        </div>
+      {% endif %}
+      {% if page.short %}
+        <div class="less-bottomspaced">
+          {{page.short}}
+        </div>
+      {% endif %}
+      {% if page.category %}
+        <div class="post-categories">
+          {% for cat in page.category %}
+            <a href="/category/{{cat}}">{{cat}}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if page.tags %}
+        <div>
+          {% for tag in page.tags %}
+            <a href="/tag/#{{tag}}">{{tag}}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+    <div class="post-content col l9 xl12">
+      {{page.content}}
+    </div>
+  </div>
+</div>

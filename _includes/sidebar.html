@@ -5,35 +5,35 @@
 	  </div>
 	  <div class="sidebar-text">
 	  	Hi, I’m Alex, an engineer based in the US. I write about my projects, interests, and art. 
-	  	<a href="/about/"{% if page.url contains "/about/" %}class="active"{% endif %}>More</a>.
+	  	<a href="/about"{% if page.url contains "/about" %}class="active"{% endif %}>More</a>.
 	  </div>
   </section>
 
   <section>
 	  <div class="sidebar-title">
-	  	<a href="/about">Projects</a>
+	  	<a href="/project">Projects</a>
 	  </div>
   </section>
 
   <section>
 	  <div class="sidebar-title">
-	  	<a href="/about">Interests</a>
+	  	<a href="/interest">Interests</a>
 	  </div>
   </section>
 
-  <section>
-  	<div class="preview-img topspaced bottomspaced">
-  		<a href="/category/diving">
+  <section class="topspaced bottomspaced">
+  	<div class="preview-img">
+  		<a href="/category/trips">
   			{% include image.html url="/assets/img/wave_top2.jpg" %}
   		</a>
   	</div>
   </section>
 
-  <section>
+  <section class="bottomspaced">
 	  <div class="sidebar-title">
 	  	<a href="/">Recent Posts</a>
 	  </div>
-	  <div class="sidebar-text">
+	  <div class="sidebar-text overflow-ellipses">
 	  	{% for post in site.posts limit:10 %}
 			  {% if post.archived %}
 			  {% else %}
@@ -46,4 +46,16 @@
 			{% endfor %}
 	  </div>
   </section>
+
+  <section class="bottomspaced">
+  	<div class="sidebar-title">
+  		<a href="/category">Categories</a>
+  	</div>
+  	<div class="sidebar-text">
+  		{% for tag in site.categories %}
+	    	<div>
+	    		<a href="#{{ tag[0] }}" class="post-tag">{{ tag[0] }}</a>
+	    	</div>
+	    {% endfor %}
+  	</div>
 </aside>
