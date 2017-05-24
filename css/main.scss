@@ -153,3 +153,58 @@ header {
 .page-title {
     font-size: 1.5em;
 }
+
+.contact-label{
+    min-width:150px;
+    margin-right: 10px;
+}
+
+.contact-text{
+    float:right;
+}
+
+#contact {
+    //font-family: 'Montserrat';
+    a {
+        border-bottom: none;
+        color: red;
+        &:hover {
+            color: black;
+        }
+    }
+}
+
+.resume {
+    font-size: 16px;
+    h1 {
+        font-size: 26px;
+        font-weight: bold;
+    }
+    strong {
+        font-size: 20px;
+    }
+    ul {
+        list-style: default;
+        li {
+            list-style-type: circle;
+            margin-left: 20px;
+        }
+    }
+
+}
+
+.tag-entry {
+    .tag-name {
+        font-size: 1.4em;
+    }
+    .tag-previews {
+        margin-left: 20px;
+    }
+    .tag-preview-title {
+        font-size: 1em;
+    }
+    .tag-meta {
+        font-size: .7em;
+        font-family: 'Courier';
+    }
+}

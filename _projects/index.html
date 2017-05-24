@@ -1,0 +1,65 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+---
+
+{% assign web = "web" %}
+{% assign machine_learning = "machine learning" %}
+
+{% assign pgroups = "" %}
+{% for proj in site.projects %}
+{% assign ttags = proj.group | join:'|' | append:'|' %}
+{% assign pgroups = pgroups | append:ttags %}
+{% endfor %}
+
+{% assign pgroups = pgroups | split:'|' | sort %}
+
+{% assign groups = "" %}
+
+{% for g in pgroups %}
+{% if g != "" %}
+
+{% if groups == "" %}
+{% assign groups = g | split:'|' %}
+{% endif %}
+
+{% unless groups contains g %}
+{% assign groups = groups | join:'|' | append:'|' | append:g | split:'|' %}
+{% endunless %}
+{% endif %}
+{% endfor %}
+
+<div>Projects</div>
+
+<!-- {% for post in site.projects %}
+  <div class="post-preview">
+    {{ post.title }}
+  </div>
+{% endfor %} -->
+
+<div>
+	<h3>Machine Learning</h3>
+		{% for project in site.projects %}
+		  {% if project.group == machine_learning %}
+			  <div>
+			    <a class="tag-preview-title" href="{{ project.url | prepend: site.baseurl }}">
+			      {{ project.title }}
+			    </a>
+			  </div>
+		  {% endif %}
+	  {% endfor %}
+</div>
+
+<div>
+	<h3>Web</h3>
+		{% for project in site.projects %}
+		  {% if project.group == web %}
+			  <div>
+			    <a class="tag-preview-title" href="{{ project.url | prepend: site.baseurl }}">
+			      {{ project.title }}
+			    </a>
+			  </div>
+		  {% endif %}
+	  {% endfor %}
+</div>
