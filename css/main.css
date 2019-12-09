@@ -127,3 +127,29 @@ header h2 {
     list-style-type: circle;
     margin-left: 20px;
 }
+
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    background: #DEDEDE;
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#fpsmeter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    color: #AAA;
+}
