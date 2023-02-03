@@ -84,12 +84,15 @@ var getRandomItem = function(list, weight) {
 /***********************
 BOID
 ***********************/
-function Boid(x, y) {
-  this.init(x, y);
+function Boid(x, y, segmentSize) {
+  this.init(x, y, segmentSize);
 }
 
 const OSCILLATION_PERIOD = 50;
-const OSCILLATION_AMPLITUDE = 2;
+const OSCILLATION_AMPLITUDE = 3;
+const MARGIN_BUFFER = 100;
+
+const BOID_SEGMENTS = [.2, .5, .8, .9, .7, .5, .3, .1];
 
 Boid.prototype = {
   init: function(x, y) {
@@ -98,17 +101,17 @@ Boid.prototype = {
     this.health = 1;
     this.maturity = 4;
     this.speed = 1.6;
-    this.size = 5;
+    this.size = 5 * ~~random(70, 100) / 100.0;
     this.hungerLimit = 12000;
     this.hunger = 0;
     this.isFull = false;
     this.digestTime = 400;
     this.color = 'rgb(' + ~~random(0,100) + ',' + ~~random(50,220) + ',' + ~~random(50,220) + ')';
-
-    this.segmentSize = [.1, .35, .55, .68, .85, .92, 1, .92, .85, .8, .75, .64, .53, .5, .4, .33, .25, .2, .1, .05];
-
-    this.oscillationPeriod = OSCILLATION_PERIOD * this.size;
-    this.oscillationAmplitude = OSCILLATION_AMPLITUDE * this.size;
+    this.segmentSize = BOID_SEGMENTS;
+    this.sizeMult = 1;
+  
+    this.oscillationPeriod = ~~random(80, 120) / 100.0 * OSCILLATION_PERIOD * this.size / 3;
+    this.oscillationAmplitude = ~~random(80, 120) / 100.0 * OSCILLATION_AMPLITUDE * this.size / 5;
 
     //brains
     this.eyesight = 100; //range for object dectection
@@ -119,7 +122,7 @@ Boid.prototype = {
     this.momentum = .25;
     this.angMomentum = 0.1;
     this.separationScale = 0.2;
-    this.maxAccel = 2.5;
+    this.maxAccel = 1;
   
     this.x = x || 0.0;
     this.y = y || 0.0;
@@ -146,6 +149,9 @@ Boid.prototype = {
 
     // Track and draw segments.
     this.phase = Math.random() * 2 * Math.PI;
+    this.initSegments();
+  },
+  initSegments: function() {
     this.segments = [{
       x: this.x,
       y: this.y,
@@ -242,7 +248,7 @@ Boid.prototype = {
     }
   },
   limitAcceleration: function() {
-    if (calcMagnitude(this.acc.x, this.acc.y) > 1) {
+    if (calcMagnitude(this.acc.x, this.acc.y) > this.maxAccel) {
       this.acc = calcVectorMult(calcVectorNorm(this.acc), this.maxAccel);
     }
   },
@@ -262,16 +268,19 @@ Boid.prototype = {
     var speed = calcMagnitude(this.v.x, this.v.y);
     this.x += this.heading.x * speed;
     this.y += this.heading.y * speed;
-    const MARGIN_BUFFER = 50;
     if (this.x > ctx.width + MARGIN_BUFFER) {
       this.x = this.x - ctx.width - 2 * MARGIN_BUFFER;
+      this.shiftSegments();
     } else if (this.x < -MARGIN_BUFFER) {
       this.x = this.x + ctx.width + 2 * MARGIN_BUFFER;
+      this.shiftSegments();
     }
     if (this.y > ctx.height + MARGIN_BUFFER) {
       this.y = this.y - ctx.height - 2 * MARGIN_BUFFER;
+      this.shiftSegments();
     } else if (this.y < -MARGIN_BUFFER) {
       this.y = this.y + ctx.height + 2 * MARGIN_BUFFER;
+      this.shiftSegments();
     }
     // this.x = (this.x + ctx.width) % ctx.width;
     // this.y = (this.y + ctx.height) % ctx.height;
@@ -299,14 +308,32 @@ Boid.prototype = {
   },
   draw: function( ctx ) {
     drawSize = this.size;
+    // ctx.beginPath();
+    // ctx.moveTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
+    // ctx.lineTo( this.x + ( this.unitV.y * drawSize ), this.y - ( this.unitV.x * drawSize ));
+    // ctx.lineTo( this.x - ( this.unitV.x * drawSize * 3 ), this.y - ( this.unitV.y * drawSize * 3 ));
+    // ctx.lineTo( this.x - ( this.unitV.y * drawSize ), this.y + ( this.unitV.x * drawSize ));
+    // ctx.lineTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
+    // ctx.fillStyle = 'rgba(0,0,0,.4)';
+    // ctx.fill();
+
     ctx.beginPath();
-    ctx.moveTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
-    ctx.lineTo( this.x + ( this.unitV.y * drawSize ), this.y - ( this.unitV.x * drawSize ));
-    ctx.lineTo( this.x - ( this.unitV.x * drawSize * 3 ), this.y - ( this.unitV.y * drawSize * 3 ));
-    ctx.lineTo( this.x - ( this.unitV.y * drawSize ), this.y + ( this.unitV.x * drawSize ));
-    ctx.lineTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
+    ctx.moveTo(this.segments[0].x, this.segments[0].y);
+    for (let i = 1; i < this.segmentSize.length; i++) {
+      var diff = calcVectorSubtract(this.segments[i - 1], this.segments[i]);
+      let ortho = calcVectorMult(calcOrthogonalVector(diff), this.segmentSize[i] * this.size * this.sizeMult);
+      let point = calcVectorAdd(this.segments[i], ortho);
+      ctx.lineTo(point.x, point.y);
+    }
+    for (let i = this.segmentSize.length - 1; i > 0; i--) {
+      var diff = calcVectorSubtract(this.segments[i], this.segments[i - 1]);
+      let ortho = calcVectorMult(calcOrthogonalVector(diff), this.segmentSize[i] * this.size * this.sizeMult);
+      let point = calcVectorAdd(this.segments[i], ortho);
+      ctx.lineTo(point.x, point.y);
+    }
+    ctx.lineTo(this.segments[0].x, this.segments[0].y);
     ctx.fillStyle = this.color;
-    ctx.shadowBlur = 20;
+    ctx.shadowBlur = 2;
     ctx.shadowColor = this.color;
     ctx.fill();
   },
@@ -319,10 +346,11 @@ Boid.prototype = {
       y: this.y,
     }
 
-    let bodyPhaseOffset = .3;
-    let bodyOscillationAmplitude = 0;
+    let bodyPhaseOffset = this.segmentSize.length / 2 * Math.PI;
+    let bodyOscillationAmplitude = 1;
+    let speedMult = calcMagnitude(this.v.x, this.v.y) / this.speed;
     
-    let sineVal = Math.sin(Date.now()/this.oscillationPeriod + this.phase) * this.oscillationAmplitude;
+    let sineVal = Math.sin(Date.now()/this.oscillationPeriod + this.phase) * this.oscillationAmplitude * speedMult;
     let orthoVector = calcOrthogonalVector(this.v);
     orthoVector = calcVectorMult(orthoVector, sineVal);
     this.segments[0] = calcVectorAdd({x: this.x, y: this.y}, orthoVector);
@@ -330,11 +358,21 @@ Boid.prototype = {
     for (let i = 1; i < this.segmentSize.length; i++) {
       var diff = calcVectorSubtract(this.segments[i - 1], this.segments[i]);
       let ortho = calcOrthogonalVector(diff);
-      let waveOffset = Math.sin(Date.now()/this.oscillationPeriod + i * bodyPhaseOffset + this.phase) * bodyOscillationAmplitude;
+      let waveOffset = Math.sin(Date.now()/this.oscillationPeriod + i * bodyPhaseOffset + this.phase) 
+        * speedMult * bodyOscillationAmplitude * i / this.segmentSize.length;
       //console.log(waveOffset, diff);
       diff = calcVectorAdd(diff, calcVectorMult(ortho, waveOffset));
       diff = calcVectorMult(calcVectorNorm(diff), this.size);
       this.segments[i] = calcVectorSubtract(this.segments[i - 1], diff);
+    }
+  },
+  shiftSegments: function() {
+    // Shifts segments by dx/dy of this.x and this.y.
+    let dx = this.x - this.segments[0].x;
+    let dy = this.y - this.segments[0].y;
+    for (let i = 0; i < this.segments.length; i++) {
+      this.segments[i].x += dx;
+      this.segments[i].y += dy;
     }
   }
 };
@@ -342,10 +380,6 @@ Boid.prototype = {
 Predator.prototype = new Boid();
 Predator.prototype.constructor = Predator;
 Predator.constructor = Boid.prototype.constructor;
-
-const PREDATOR_NUM_SEGMENTS = 10;
-const SHARK_SEGMENT_SIZE = [.1, .35, .55, .68, .85, .92, 1, .92, .85, .8, .75, .64, .53, .5, .4, .33, .25, .2, .1, .05];
-const SEGMENT_LENGTH = 3;
 
 function Predator(x, y) {
   this.init(x, y);
@@ -355,16 +389,26 @@ function Predator(x, y) {
   // body
   this.maturity = 6;
   this.speed = 2;
-  this.size = 5;
+  this.size = ~~random(7, 9);
   this.hungerLimit = 25000;
-  this.color = 'rgb(' + ~~random(100,250) + ',' + ~~random(10,30) + ',' + ~~random(10,30) + ')';
+  const finColorOffset = 10;
+  // this.color = 'rgb(' + ~~random(160,200) + ',' + ~~random(10,30) + ',' + ~~random(10,30) + ')';
+  let r = ~~random(130,170), g= ~~random(160,200), b = ~~random(200,225);
+  // let r = ~~random(100,115), g= ~~random(105,120), b = ~~random(80,95);
 
+  this.color = 'rgb(' + r + ',' + g + ',' + b + ')';
+  this.finColor = 'rgb(' + (r - finColorOffset) + ',' + (g - finColorOffset) + ',' + (b - finColorOffset) + ')'; 
+  this.oscillationPeriod = OSCILLATION_PERIOD * this.size;
+  this.oscillationAmplitude = OSCILLATION_AMPLITUDE * this.size;
+  this.segmentSize = [.3, .5, .7, .9, .93, .96, 1, .85, .8, .75, .64, .53, .5, .4, .33, .25, .22, .18, .13, .1];
+  this.sizeMult = 1.5;
   // brains
   this.eyesight = 200;
   this.flockDistance = 2000;
   this.matchVelFactor = 2000; //factor that determines how much the flock velocity affects the boid. less = more matching
   this.separationScale = 1;
   this.personalSpace = 70;
+  this.initSegments();
 }
 
 Predator.prototype.eat = function(other) {
@@ -388,24 +432,66 @@ Predator.prototype.handleOther = function(other) {
 
 Predator.prototype.draw = function(ctx) {
   drawSize = this.size;
+  // ctx.beginPath();
+  // ctx.moveTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
+  // ctx.lineTo( this.x + ( this.unitV.y * drawSize ), this.y - ( this.unitV.x * drawSize ));
+  // ctx.lineTo( this.x - ( this.unitV.x * drawSize * 3 ), this.y - ( this.unitV.y * drawSize * 3 ));
+  // ctx.lineTo( this.x - ( this.unitV.y * drawSize ), this.y + ( this.unitV.x * drawSize ));
+  // ctx.lineTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
+  // ctx.fillStyle = '#555';
+  // ctx.fill();
+
+    // Draw fins.
+  drawFin(this, ctx, 4, 4, .75, true);
+  drawFin(this, ctx, 4, 4, .75, false);
+  drawFin(this, ctx, 9, 1.5, .3, true);
+  drawFin(this, ctx, 9, 1.5, .3, false);
+
   ctx.beginPath();
-  ctx.moveTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
-  ctx.lineTo( this.x + ( this.unitV.y * drawSize ), this.y - ( this.unitV.x * drawSize ));
-  ctx.lineTo( this.x - ( this.unitV.x * drawSize * 3 ), this.y - ( this.unitV.y * drawSize * 3 ));
-  ctx.lineTo( this.x - ( this.unitV.y * drawSize ), this.y + ( this.unitV.x * drawSize ));
-  ctx.lineTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
+  let sizeMult = 1.5;
+  ctx.moveTo(this.segments[0].x, this.segments[0].y);
+  for (let i = 1; i < this.segmentSize.length; i++) {
+    var diff = calcVectorSubtract(this.segments[i - 1], this.segments[i]);
+    let ortho = calcVectorMult(calcOrthogonalVector(diff), this.segmentSize[i] * this.size * sizeMult);
+    let point = calcVectorAdd(this.segments[i], ortho);
+    ctx.lineTo(point.x, point.y);
+  }
+  for (let i = this.segmentSize.length - 1; i > 0; i--) {
+    var diff = calcVectorSubtract(this.segments[i], this.segments[i - 1]);
+    let ortho = calcVectorMult(calcOrthogonalVector(diff), this.segmentSize[i] * this.size * sizeMult);
+    let point = calcVectorAdd(this.segments[i], ortho);
+    ctx.lineTo(point.x, point.y);
+  }
+  ctx.lineTo(this.segments[0].x, this.segments[0].y);
   ctx.fillStyle = this.color;
-  ctx.shadowBlur = 20;
+  ctx.shadowBlur = 2;
   ctx.shadowColor = this.color;
   ctx.fill();
-
-  for (let v of this.segments) {
-    ctx.beginPath();
-    ctx.arc( v.x, v.y, 1, 0, TWO_PI );
-    ctx.fillStyle = '#000';
-    ctx.fill();    
-  }
 };
+
+function drawFin(boid, ctx, finIdx, finMult, finVertScale, flip) {
+  const finDims = [.25, .35, .6, .85, .95, 1];
+  ctx.beginPath();
+  ctx.moveTo(boid.segments[finIdx].x, boid.segments[finIdx].y);
+  var finDiff = calcVectorSubtract(boid.segments[finIdx], boid.segments[finIdx - 1]);
+  let finOrtho = calcOrthogonalVector(finDiff)
+  finOrtho = flip ? finOrtho : calcVectorMult(finOrtho, -1)
+  var finOffset = calcVectorMult(calcVectorNorm(finDiff), boid.size * finVertScale);
+  for (let i = 0; i < finDims.length; i++) {
+    let ortho = calcVectorMult(finOrtho, finDims[i] * boid.size * finMult);
+    let point = calcVectorAdd(calcVectorAdd(boid.segments[finIdx], calcVectorMult(finOffset, i)), ortho);
+    ctx.lineTo(point.x, point.y);
+  }
+  let endFinOrtho = calcVectorMult(finOrtho, .35 * boid.size * finMult);
+  let endFinPoint = calcVectorAdd(calcVectorAdd(boid.segments[finIdx], calcVectorMult(finOffset, finDims.length - 2)), endFinOrtho);
+  ctx.lineTo(endFinPoint.x, endFinPoint.y);
+  
+  ctx.lineTo(boid.segments[finIdx].x, boid.segments[finIdx].y);
+  ctx.fillStyle = boid.finColor;
+  ctx.shadowBlur = 2;
+  ctx.shadowColor = boid.color;
+  ctx.fill();
+}
 
 /***********************
 SIM
@@ -413,7 +499,8 @@ SIM
 var boids = [];
 
 var sim = Sketch.create({
-  container: document.getElementById( 'container' )
+  container: document.getElementById( 'container' ),
+  // interval: 5,
 });
 
 sim.setup = function() {
@@ -465,6 +552,7 @@ sim.draw = function() {
   }
   then = now;
   sim.fillStyle = 'rgb(100,100,100)';
+  sim.shadowBlur = 0;
   sim.fillText('fps: ' + fps.toFixed(2), sim.width - 50, sim.height - 10);
   c++;
 };
