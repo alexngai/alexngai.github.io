@@ -338,23 +338,34 @@ Boid.prototype = {
     ctx.fill();
   },
   updateSegments: function(dt) {
-    // Update segments.
-    // this.segments.unshift({x: this.x, y: this.y});
-    // this.segments.pop();
+    let prevFirstSeg = this.segments[0];
     this.segments[0] = {
       x: this.x,
       y: this.y,
     }
 
     let bodyPhaseOffset = this.segmentSize.length / 2 * Math.PI;
-    let bodyOscillationAmplitude = 1;
+    let bodyOscillationAmplitude = 1.25;
     let speedMult = calcMagnitude(this.v.x, this.v.y) / this.speed;
     
     let sineVal = Math.sin(Date.now()/this.oscillationPeriod + this.phase) * this.oscillationAmplitude * speedMult;
     let orthoVector = calcOrthogonalVector(this.v);
     orthoVector = calcVectorMult(orthoVector, sineVal);
     this.segments[0] = calcVectorAdd({x: this.x, y: this.y}, orthoVector);
-
+    // Limit rendered movement.
+    const DLIMIT = 2;
+    let ds = {
+      x: this.segments[0].x - prevFirstSeg.x,
+      y: this.segments[0].y - prevFirstSeg.y,
+    };
+    if (calcMagnitude(ds.x, ds.y) > DLIMIT) {
+      ds = calcVectorMult(calcVectorNorm(ds), DLIMIT);
+      this.segments[0] = {
+        x: prevFirstSeg.x + ds.x,
+        y: prevFirstSeg.y + ds.y,
+      };
+    }
+    
     for (let i = 1; i < this.segmentSize.length; i++) {
       var diff = calcVectorSubtract(this.segments[i - 1], this.segments[i]);
       let ortho = calcOrthogonalVector(diff);
@@ -395,12 +406,12 @@ function Predator(x, y) {
   // this.color = 'rgb(' + ~~random(160,200) + ',' + ~~random(10,30) + ',' + ~~random(10,30) + ')';
   let r = ~~random(130,170), g= ~~random(160,200), b = ~~random(200,225);
   // let r = ~~random(100,115), g= ~~random(105,120), b = ~~random(80,95);
-
+  this.angMomentum = 0.07;
   this.color = 'rgb(' + r + ',' + g + ',' + b + ')';
   this.finColor = 'rgb(' + (r - finColorOffset) + ',' + (g - finColorOffset) + ',' + (b - finColorOffset) + ')'; 
-  this.oscillationPeriod = OSCILLATION_PERIOD * this.size;
-  this.oscillationAmplitude = OSCILLATION_AMPLITUDE * this.size;
-  this.segmentSize = [.3, .5, .7, .9, .93, .96, 1, .85, .8, .75, .64, .53, .5, .4, .33, .25, .22, .18, .13, .1];
+  this.oscillationPeriod = OSCILLATION_PERIOD * this.size * 0.85;
+  this.oscillationAmplitude = OSCILLATION_AMPLITUDE * this.size * 1.2;
+  this.segmentSize = [.3, .5, .7, .9, .93, .96, 1, .85, .8, .75, .64, .53, .5, .4, .22, .15, .18, .13, .1, .08];
   this.sizeMult = 1.5;
   // brains
   this.eyesight = 200;
@@ -438,7 +449,16 @@ Predator.prototype.draw = function(ctx) {
   // ctx.lineTo( this.x - ( this.unitV.x * drawSize * 3 ), this.y - ( this.unitV.y * drawSize * 3 ));
   // ctx.lineTo( this.x - ( this.unitV.y * drawSize ), this.y + ( this.unitV.x * drawSize ));
   // ctx.lineTo( this.x + ( this.unitV.x * drawSize ), this.y + ( this.unitV.y * drawSize ));
-  // ctx.fillStyle = '#555';
+  // ctx.fillStyle = '#FFF';
+  // ctx.fill();
+
+  // ctx.beginPath();
+  // ctx.moveTo( this.x + ( this.heading.x * drawSize ), this.y + 50 + ( this.heading.y * drawSize ));
+  // ctx.lineTo( this.x + ( this.heading.y * drawSize ), this.y + 50 - ( this.heading.x * drawSize ));
+  // ctx.lineTo( this.x - ( this.heading.x * drawSize * 3 ), this.y + 50 - ( this.heading.y * drawSize * 3 ));
+  // ctx.lineTo( this.x - ( this.heading.y * drawSize ), this.y + 50 + ( this.heading.x * drawSize ));
+  // ctx.lineTo( this.x + ( this.heading.x * drawSize ), this.y + 50 + ( this.heading.y * drawSize ));
+  // ctx.fillStyle = 'red';
   // ctx.fill();
 
     // Draw fins.
@@ -446,6 +466,7 @@ Predator.prototype.draw = function(ctx) {
   drawFin(this, ctx, 4, 4, .75, false);
   drawFin(this, ctx, 9, 1.5, .3, true);
   drawFin(this, ctx, 9, 1.5, .3, false);
+  drawFin(this, ctx, 16, 0.5, .5, false);
 
   ctx.beginPath();
   let sizeMult = 1.5;
@@ -509,12 +530,13 @@ sim.setup = function() {
     y = random(0, sim.height);
     sim.spawn(x, y);
   }
-  // Spawn at least a single predator;
+  // Spawn at least two predators;
+  sim.spawn(random(0, sim.width), random(0, sim.height), 'predator');
   sim.spawn(random(0, sim.width), random(0, sim.height), 'predator');
 };
 
 sim.spawn = function(x, y, type = undefined) {
-  var predatorProbability = 0.01;
+  var predatorProbability = 0.005;
       
   if (!type) {
     type = getRandomItem(['boid','predator'],[1 - predatorProbability, predatorProbability]);
