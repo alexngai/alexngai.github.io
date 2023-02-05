@@ -488,6 +488,8 @@ Predator.prototype.draw = function(ctx) {
   ctx.shadowBlur = 2;
   ctx.shadowColor = this.color;
   ctx.fill();
+
+  drawFin(this, ctx, 7, 1, .4, true);
 };
 
 function drawFin(boid, ctx, finIdx, finMult, finVertScale, flip) {
