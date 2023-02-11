@@ -1,3 +1,14 @@
+html, body {
+  height: 100%;
+}
+
+.container {
+  flex-direction: column;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 header {
     font-family: 'Montserrat';
     color: white;
@@ -15,6 +26,20 @@ header h2 {
     font-size: 1.1em;
     font-weight: 800;
     letter-spacing: 2.5px;
+}
+
+.linksbox {
+  margin-bottom: 20px;
+}
+
+.linksbox a {
+  color: #ffcfcf;
+  font-family: 'Montserrat';
+  padding-right: 20px;
+}
+
+.linksbox a:hover {
+  color: white;
 }
 
 .navigation a {
