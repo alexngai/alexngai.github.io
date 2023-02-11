@@ -7,12 +7,14 @@ header h1 {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 10px;
+    user-select: none;
 }
 
 header h2 {
     font-size: 1.1em;
     font-weight: 800;
     letter-spacing: 2.5px;
+    user-select: none;
 }
 
 .navigation a {

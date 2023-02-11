@@ -1,6 +1,7 @@
 header {
     font-family: 'Montserrat';
     color: white;
+    user-select: none;
 }
 
 header h1 {
